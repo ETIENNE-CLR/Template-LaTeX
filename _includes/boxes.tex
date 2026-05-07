@@ -1,0 +1,157 @@
+%======================================================================
+% USAGE :
+%   \begin{boxDefault}[Titre optionnel] ... \end{boxDefault}   % boîte grise sans icône
+%   \begin{boxInfo}[Titre optionnel] ... \end{boxInfo}
+%   \begin{boxSuccess}[Bravo !] ... \end{boxSuccess}
+%   \begin{boxWarning}[Attention] ... \end{boxWarning}
+%   \begin{boxDanger}[Important] ... \end{boxDanger}
+%   \begin{boxTeacher}[Note pour l'enseignant] ... \end{boxTeacher}
+%   \begin{boxDownload}[Ressources] ... \end{boxDownload}
+%   \begin{boxHelp}[Indice] ... \end{boxHelp}
+%   \begin{boxObjectif}[Objectifs] ... \end{boxObjectif}
+%   \begin{boxValidation}[Critères] ... \end{boxValidation}
+%======================================================================
+
+%----------------------------------------------------------------------
+% Gestion du chemin des icônes (\DocDisplayBoxPictures)
+%----------------------------------------------------------------------
+% Si DocSetup n'a pas défini \DocDisplayBoxPictures, on met un défaut.
+% Si une ancienne macro \displayboxpictures existe, on l'utilise comme source.
+\makeatletter
+\@ifundefined{DocDisplayBoxPictures}{%
+	\@ifundefined{displayboxpictures}{%
+		% ni DocDisplayBoxPictures ni displayboxpictures -> défaut
+		\providecommand{\DocDisplayBoxPictures}{../_includes/boxes_images}%
+	}{%
+		% ancienne macro displayboxpictures définie -> on la réutilise
+		\let\DocDisplayBoxPictures\displayboxpictures%
+	}%
+}{}%
+\makeatother
+
+%----------------------------------------------------------------------
+% Packages nécessaires (tolérant si déjà chargés ailleurs)
+%----------------------------------------------------------------------
+\RequirePackage{graphicx}
+\RequirePackage{marginnote}
+\RequirePackage{tcolorbox}
+\RequirePackage{tikz}
+\RequirePackage{verbatim}
+\RequirePackage{etoolbox}
+
+% Librairies tcolorbox utiles
+\tcbuselibrary{skins,breakable}
+
+%======================================================================
+% Macro utilitaire pour déclarer les boîtes standard
+%======================================================================
+% \CFPTDeclareBox{<NomEnv>}{<prefixCouleur>}{<colTitreTexte>}{<épaisseurCadre>}{<icone>}
+%
+% Paramètres :
+%  - <NomEnv>        : nom de l'environnement tcolorbox à créer
+%                      (boxInfo, boxSuccess, boxWarning, …).
+%  - <prefixCouleur> : préfixe des couleurs définies dans inc_colors :
+%                      <prefix>Background, <prefix>Color, <prefix>TitleBackground.
+%                      Ex. "info", "success", "warning", "danger", "teacher",
+%                      "download", "aide", "objectif", "validation", "default".
+%  - <colTitreTexte> : couleur du texte du titre (ex. white, black).
+%  - <épaisseurCadre>: épaisseur du cadre (ex. 0.5pt, 1.0pt).
+%  - <icone>         : nom de fichier icône (ex. box-info.png) dans
+%                      \DocDisplayBoxPictures. Chaîne vide ("") = aucune icône.
+%
+% Comportement spécifique :
+%  - Les boîtes sont "breakable" (coupure possible sur plusieurs pages).
+%  - L'icône est dessinée en overlay en haut à droite :
+%      * une fois pour une boîte non cassée (overlay unbroken),
+%      * une fois sur le premier segment pour une boîte cassée (overlay first).
+%  - La marge droite (clé 'right') dépend de la présence d'icône et de titre :
+%      * pas d'icône (#5 vide)              -> right = 0.5cm
+%      * icône + titre présent              -> right = 0.5cm
+%      * icône mais PAS de titre            -> right = 1.0cm
+%    -> le texte ne passe pas sous l'icône lorsqu'il n'y a pas de titre.
+%======================================================================
+
+\makeatletter
+\newcommand{\CFPTDeclareBox}[5]{%
+	\newtcolorbox{#1}[1][]{%
+		colback=#2Background,
+		colframe=#2Color,
+		colbacktitle=#2TitleBackground,
+		coltitle=#3,
+		boxrule=#4,
+		width=\linewidth,
+		enhanced,
+		breakable,
+		%--------------------------------------------
+		% Marge à droite :
+		%  - pas d'icône (#5 vide)           -> 0mm
+		%  - icône + titre présent          -> 0mm
+		%  - icône mais PAS de titre        -> 1.2cm
+		%--------------------------------------------
+		right=\ifx&#5&%
+					0.5cm%
+				\else
+					\iftcb@hasTitle%
+						0.5cm%
+					\else
+						1.0cm%
+					\fi
+				\fi,
+		title={##1},
+		fonttitle=\bfseries,
+		toptitle=2mm,
+		bottomtitle=2mm,
+		% cacher l'entête si pas de titre
+		title code={\if\relax\detokenize{##1}\relax\else\tcbtitle\par\fi},
+		% Icône : un seul dessin (boîte non cassée ou 1er segment)
+		overlay unbroken={%
+			\ifx&#5&%
+			\else
+			\node[anchor=north east] at (frame.north east)
+			{\includegraphics[height=0.70cm]{\DocDisplayBoxPictures/#5}};%
+			\fi
+		},
+		overlay first={%
+			\ifx&#5&%
+			\else
+			\node[anchor=north east] at (frame.north east)
+			{\includegraphics[height=0.70cm]{\DocDisplayBoxPictures/#5}};%
+			\fi
+		},
+	}%
+}
+\makeatother
+
+%======================================================================
+% Déclaration des boîtes standard (couleurs centralisées dans inc_colors)
+%======================================================================
+
+% boîte par défaut grise, sans icône
+\CFPTDeclareBox{boxDefault}{default}{white}{0.5pt}{}
+
+% info
+\CFPTDeclareBox{boxInfo}{info}{white}{0.5pt}{box-info.png}
+
+% success
+\CFPTDeclareBox{boxSuccess}{success}{white}{0.5pt}{box-success.png}
+
+% warning (titre en noir pour lisibilité sur fond jaune)
+\CFPTDeclareBox{boxWarning}{warning}{black}{0.5pt}{box-warning.png}
+
+% danger
+\CFPTDeclareBox{boxDanger}{danger}{white}{0.5pt}{box-danger.png}
+
+% teacher
+\CFPTDeclareBox{boxTeacher}{teacher}{white}{0.5pt}{box-teacher.png}
+
+% download (cadre plus épais)
+\CFPTDeclareBox{boxDownload}{download}{white}{1.0pt}{box-download.png}
+
+% aide
+\CFPTDeclareBox{boxHelp}{aide}{white}{0.5pt}{box-aide.png}
+
+% Objectif
+\CFPTDeclareBox{boxObjectif}{objectif}{black}{0.5pt}{box-objectif.png}
+
+% Validation
+\CFPTDeclareBox{boxValidation}{validation}{black}{0.5pt}{box-validation.png}

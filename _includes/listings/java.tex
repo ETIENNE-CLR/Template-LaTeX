@@ -1,0 +1,19 @@
+\input{../_includes/listings/style_code.tex}
+
+% ======================================
+% JAVA
+% ======================================
+
+\lstdefinelanguage{Javacustom}{
+  language=Java,
+  keywordstyle=\color{javaColor}\bfseries,
+  sensitive=true
+}
+
+\lstnewenvironment{javacode}[1][]{
+  \lstset{
+    style=styleCode,
+    language=Javacustom,
+    #1
+  }
+}{}

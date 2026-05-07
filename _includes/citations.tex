@@ -1,0 +1,30 @@
+% Packages nécessaires
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{etoolbox}
+
+% Couleur des citations (modifiable)
+\definecolor{citationcolor}{RGB}{80,80,80}
+\definecolor{quotecolor}{RGB}{160,160,160}
+
+% Commande citation simple
+\newcommand{\mesCitation}[2][]{%
+    \begin{center}
+        \begin{tikzpicture}
+            \node[
+                text width=0.85\linewidth,
+                align=left,
+                inner sep=12pt
+            ] {
+                {\color{quotecolor}\Large``}\,
+                {\itshape\color{citationcolor}#2}\,
+                {\color{quotecolor}\Large''}
+                \ifstrempty{#1}{}{%
+                    \vspace{0.8em}
+                    
+                    \hfill--- {\small #1}
+                }
+            };
+        \end{tikzpicture}
+    \end{center}
+}

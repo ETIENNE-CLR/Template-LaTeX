@@ -1,0 +1,19 @@
+\input{../_includes/listings/style_code.tex}
+
+% ======================================
+% HTML
+% ======================================
+
+\lstdefinelanguage{HTMLcustom}{
+  language=HTML,
+  keywordstyle=\color{htmlColor}\bfseries,
+  sensitive=false
+}
+
+\lstnewenvironment{htmlcode}[1][]{
+  \lstset{
+    style=styleCode,
+    language=HTMLcustom,
+    #1
+  }
+}{}

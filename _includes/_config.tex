@@ -1,0 +1,96 @@
+% Informations générales du document
+\newcommand{\myAuthor}{Étienne Caulier}
+\newcommand{\myLesson}{TPI}
+\newcommand{\myEmail}{etienne.clr@eduge.ch}
+\newcommand{\myTitle}{Apprentissage \LaTeX}
+\newcommand{\myClass}{}
+\newcommand{\mySchool}{}
+\newcommand{\mySubjectStudies}{Informatique}
+
+% Imports des packages
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{adjustbox}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{fancyhdr, fancyvrb}
+\usepackage{float}
+\usepackage{forest}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{helvet}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{pdfpages}
+\usepackage{pifont}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[table]{xcolor}
+
+% Config packages
+\geometry{margin=2.5cm}
+\renewcommand{\familydefault}{\sfdefault} % police sans-serif
+
+% Tableau
+\setcellgapes{1pt}
+\makegapedcells
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+\renewcommand{\arraystretch}{1.4}
+
+% Initialise les en-têtes et pieds de page
+\pagestyle{fancy}
+\fancyhf{}
+
+% Import custom packages
+\input{../_includes/colors.tex}
+\input{../_includes/boxes.tex}
+\input{../_includes/listings/all.tex}
+\input{../_includes/forest.tex}
+
+% Config en-têtes
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ -\ #1}{}}
+\newcommand{\currentSection}{\rightmark}
+\newcommand{\currentChapiter}{\leftmark}
+
+
+% En-têtes et pieds de page
+\newcommand{\leftHead}{\myTitle}
+\newcommand{\centerHead}{\myLesson}
+\newcommand{\rightHead}{\currentChapiter}
+
+\newcommand{\leftFoot}{\myAuthor \\ {\small \myEmail}}
+\newcommand{\centerFoot}{\mySchool\\{\textcolor{cfptGray}{\small Généré le \today}}}
+\newcommand{\rightFoot}{\thepage~/~\pageref{LastPage}}
+
+
+% Definition des en-têtes et pieds de page
+\fancyhead[L]{\leftHead}
+\fancyhead[C]{\centerHead}
+\fancyhead[R]{\rightHead}
+
+\fancyfoot[L]{\leftFoot}
+\fancyfoot[C]{\centerFoot}
+\fancyfoot[R]{\rightFoot}
+
+% Redéfinition des en-têtes et pieds pour la page de chapitre
+\fancypagestyle{plain}{
+	\fancyhead[L]{}
+	\fancyhead[C]{}
+	\fancyhead[R]{}
+}
+
+
+% Lignes de séparation dans les en-têtes/pieds
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Commandes
+\input{../_includes/commandes.tex}

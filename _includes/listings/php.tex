@@ -1,0 +1,24 @@
+\input{../_includes/listings/style_code.tex}
+
+% ======================================
+% PHP
+% ======================================
+
+\lstdefinelanguage{PHPcustom}{
+  language=PHP,
+  morekeywords={
+    self, parent, static,
+    public, private, protected,
+    use, function
+  },
+  keywordstyle=\color{phpColor}\bfseries,
+  sensitive=true
+}
+
+\lstnewenvironment{phpcode}[1][]{
+  \lstset{
+    style=styleCode,
+    language=PHPcustom,
+    #1
+  }
+}{}

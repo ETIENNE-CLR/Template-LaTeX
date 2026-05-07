@@ -1,0 +1,63 @@
+\begin{titlepage}
+	\thispagestyle{empty}
+
+
+	% Couleur principale
+	\definecolor{accent}{HTML}{2563EB}
+
+	% Dessin de la barre verticale en arrière-plan
+	\begin{tikzpicture}[remember picture, overlay]
+		\fill[accent] (current page.north west) ++(0,0) rectangle ++(0.04\paperwidth,-\paperheight);
+	\end{tikzpicture}
+
+	% On décale le contenu pour ne pas chevaucher la barre
+	\hspace{0.08\textwidth}
+	\begin{minipage}[t]{0.85\textwidth}
+		\vspace{1.5cm}
+
+		% Nom du projet
+		{\Huge \textbf{\myTitle}}
+
+		\vspace{0.5cm}
+
+		{\Large \textcolor{accent}{\docName}}
+
+		\vspace{1.5cm}
+
+		\rule{0.6\textwidth}{0.6pt}
+
+		\vspace{2cm}
+
+		% Bloc infos
+		\begin{flushleft}
+			\large
+			\textbf{Auteur} \\
+			\myAuthor
+
+			\vspace{0.8cm}
+
+			\textbf{Classe} \\
+			\myClass
+
+			\vspace{0.8cm}
+
+			\textbf{Cours} \\
+			\myLesson
+
+			\vspace{0.8cm}
+
+			\textbf{Contact} \\
+			\myEmail
+		\end{flushleft}
+
+		\vfill
+
+		% Bas de page
+		\begin{flushright}
+			\textcolor{accent}{\mySchool} \\
+			\vspace{0.2cm}
+			\today
+		\end{flushright}
+	\end{minipage}
+
+\end{titlepage}

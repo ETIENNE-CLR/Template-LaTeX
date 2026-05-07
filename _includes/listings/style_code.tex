@@ -1,0 +1,88 @@
+
+
+% ==============================
+% CONFIGURATION GLOBALE LISTINGS
+% ==============================
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{inconsolata}
+
+% ------------------------------------------------
+% Palette moderne (inspirée GitHub)
+% ------------------------------------------------
+\definecolor{codeBg}{HTML}{F6F8FA}
+\definecolor{codeText}{HTML}{24292F}
+\definecolor{codeFrame}{HTML}{D0D7DE}
+\definecolor{codeComment}{HTML}{6A737D}
+\definecolor{codeString}{HTML}{032F62}
+\definecolor{codeNumber}{HTML}{005CC5}
+
+% Couleurs par langage
+\definecolor{phpColor}{HTML}{6F42C1}
+\definecolor{jsColor}{HTML}{D97706}
+\definecolor{htmlColor}{HTML}{C92C2C}
+\definecolor{cssColor}{HTML}{005CC5}
+\definecolor{sqlColor}{HTML}{22863A}
+\definecolor{javaColor}{HTML}{B07219}
+\definecolor{csharpColor}{HTML}{178600}
+
+% ------------------------------------------------
+% Style général commun à TOUS les langages
+% ------------------------------------------------
+\lstdefinestyle{styleCode}{
+  backgroundcolor=\color{codeBg},
+  basicstyle=\ttfamily\small\color{codeText},
+  frame=single,
+  rulecolor=\color{codeFrame},
+  numbers=left,
+  numberstyle=\tiny\color{codeComment},
+  stepnumber=1,
+  numbersep=8pt,
+  tabsize=2,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  captionpos=b,
+  aboveskip=1.2em,
+  belowskip=1.2em,
+  commentstyle=\color{codeComment}\itshape,
+  stringstyle=\color{codeString},
+  identifierstyle=\color{codeText},
+  keywordstyle=\bfseries,
+  columns=fullflexible,
+  keepspaces=true,
+  inputencoding=utf8,
+  extendedchars=true,
+  literate={
+    {é}{{\'e}}1
+    {à}{{\`a}}1
+    {è}{{\`e}}1
+    {ù}{{\`u}}1
+    {â}{{\^a}}1
+    {ê}{{\^e}}1
+    {î}{{\^i}}1
+    {ô}{{\^o}}1
+    {û}{{\^u}}1
+    {ë}{{\"e}}1
+    {ï}{{\"i}}1
+    {ö}{{\"o}}1
+    {ü}{{\"u}}1
+    {✅}{{\ding{51}}}1
+    {❌}{{\ding{53}}}1
+    {🔐}{{}}1
+    {📱}{{}}1
+    {🚀}{{}}1
+    {📦}{{}}1
+    {⚠️}{{}}1
+    {●}{{}}1
+    % {<}{{\<}}1
+    % {>}{{\>}}1
+    {É}{{\'E}}1
+    {|}{{\textbar}}1
+    {œ}{{\oe}}1
+    {ç}{{\c{c}}}1
+  }
+}

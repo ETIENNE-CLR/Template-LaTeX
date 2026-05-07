@@ -1,0 +1,28 @@
+\input{../_includes/listings/style_code.tex}
+
+% ======================================
+% JAVASCRIPT
+% ======================================
+
+\lstdefinelanguage{JScustom}{
+  keywords={
+    break, case, catch, class, const, continue, debugger,
+    default, delete, do, else, export, extends, finally,
+    for, function, if, import, in, instanceof, let,
+    new, return, super, switch, this, throw, try,
+    typeof, var, void, while, with, yield,
+    async, await
+  },
+  keywordstyle=\color{jsColor}\bfseries,
+  sensitive=true,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/}
+}
+
+\lstnewenvironment{jscode}[1][]{
+  \lstset{
+    style=styleCode,
+    language=JScustom,
+    #1
+  }
+}{}

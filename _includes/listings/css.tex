@@ -1,0 +1,29 @@
+\input{../_includes/listings/style_code.tex}
+
+% ======================================
+% CSS
+% ======================================
+
+\lstdefinelanguage{CSScustom}{
+  keywords={
+    align-items, background, border, border-radius,
+    box-shadow, color, display, flex, font-size,
+    font-weight, height, justify-content, margin,
+    padding, position, transition, transform,
+    width, max-width, min-width
+  },
+  keywordstyle=\color{cssColor}\bfseries,
+  sensitive=true,
+  morecomment=[l]{/*},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  alsoletter={-},
+}
+
+\lstnewenvironment{csscode}[1][]{
+  \lstset{
+    style=styleCode,
+    language=CSScustom,
+    #1
+  }
+}{}

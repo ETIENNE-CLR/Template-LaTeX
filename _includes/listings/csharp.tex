@@ -1,0 +1,19 @@
+\input{../_includes/listings/style_code.tex}
+
+% ======================================
+% C# / CSHARP
+% ======================================
+
+\lstdefinelanguage{CSharpcustom}{
+  language=[Sharp]C,
+  keywordstyle=\color{csharpColor}\bfseries,
+  sensitive=true
+}
+
+\lstnewenvironment{csharpcode}[1][]{
+  \lstset{
+    style=styleCode,
+    language=CSharpcustom,
+    #1
+  }
+}{}

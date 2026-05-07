@@ -1,0 +1,19 @@
+\input{../_includes/listings/style_code.tex}
+
+% ======================================
+% SQL
+% ======================================
+
+\lstdefinelanguage{SQLcustom}{
+  language=SQL,
+  keywordstyle=\color{sqlColor}\bfseries,
+  sensitive=false
+}
+
+\lstnewenvironment{sqlcode}[1][]{
+  \lstset{
+    style=styleCode,
+    language=SQLcustom,
+    #1
+  }
+}{}
