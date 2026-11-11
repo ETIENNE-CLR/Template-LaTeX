@@ -1,0 +1,66 @@
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{soul}
+
+% --------------
+% Ajout du test bool
+% pour choisir si on
+% applique le style
+% de lien avec :
+% \disablelinksstyle
+% et
+% \enablelinksstyle
+% --------------
+\newif\ifcustomlinks
+\customlinkstrue
+
+% Style des liens
+\newcommand{\linkstyle}[1]{%
+    \ifcustomlinks
+        \textcolor{linkColor}{\ul{#1}}%
+    \else
+        #1%
+    \fi
+}
+
+% ----------------
+% Définition des couleurs
+% et redéfinition des méthodes
+% ----------------
+
+% Couleur des liens
+\definecolor{linkColor}{HTML}{0040e2}
+\setulcolor{linkColor}
+
+% Configuration hyperref
+\newcommand{\disablelinksstyle}{
+    \customlinksfalse
+    \hypersetup{
+        linkcolor=black,
+        urlcolor=black,
+        citecolor=black,
+        filecolor=black
+    }
+}
+
+\newcommand{\enablelinksstyle}{
+    \customlinkstrue
+    \hypersetup{
+        linkcolor=linkColor,
+        urlcolor=linkColor,
+        citecolor=linkColor,
+        filecolor=linkColor
+    }
+}
+
+% Redéfinition de \href (URL)
+\let\oldhref\href
+\renewcommand{\href}[2]{%
+    \oldhref{#1}{\linkstyle{#2}}%
+}
+
+% Redéfinition de \hyperref (références internes)
+\let\oldhyperref\hyperref
+\renewcommand{\hyperref}[2][]{%
+    \oldhyperref[#1]{\linkstyle{#2}}%
+}

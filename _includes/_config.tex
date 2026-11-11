@@ -23,45 +23,35 @@
 \usepackage{hyperref}
 \usepackage{lastpage}
 \usepackage{listings}
-\usepackage{longtable}
 \usepackage{makecell}
 \usepackage{multirow}
 \usepackage{pdfpages}
 \usepackage{pifont}
-\usepackage{soul}
 \usepackage{titlesec}
 \usepackage{xcolor}
 \usepackage[table]{xcolor}
 
+% Import custom packages
+\input{../_includes/colors.tex}
+\input{../_includes/boxes.tex}
+\input{../_includes/citations.tex}
+\input{../_includes/href.tex}
+\input{../_includes/listings/all.tex}
+\input{../_includes/forest.tex}
+
 % Config packages
 \geometry{margin=2.5cm}
 \renewcommand{\familydefault}{\sfdefault} % police sans-serif
-\setulcolor{downloadColor} % je définis le souligné en bleu (pour les liens)
-
-% Tableau
-\setcellgapes{1pt}
-\makegapedcells
-\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
-\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
-\renewcommand{\arraystretch}{1.4}
 
 % Initialise les en-têtes et pieds de page
 \pagestyle{fancy}
 \fancyhf{}
-
-% Import custom packages
-\input{../_includes/colors.tex}
-\input{../_includes/boxes.tex}
-\input{../_includes/listings/all.tex}
-\input{../_includes/forest.tex}
 
 % Config en-têtes
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter\ -\ #1}{}}
 \newcommand{\currentSection}{\rightmark}
 \newcommand{\currentChapiter}{\leftmark}
-
 
 % En-têtes et pieds de page
 \newcommand{\leftHead}{\myTitle}
@@ -93,14 +83,6 @@
 % Lignes de séparation dans les en-têtes/pieds
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
-
-% Je redéfinis la méthode \href pour que ça s'affiche en bleu
-\let\oldhref\href
-\renewcommand{\href}[2]{%
-    \oldhref{#1}{%
-        \textcolor{downloadColor}{\ul{#2}}%
-    }%
-}
 
 % Commandes
 \input{../_includes/commandes.tex}
