@@ -28,6 +28,7 @@
 \usepackage{multirow}
 \usepackage{pdfpages}
 \usepackage{pifont}
+\usepackage{soul}
 \usepackage{titlesec}
 \usepackage{xcolor}
 \usepackage[table]{xcolor}
@@ -35,6 +36,7 @@
 % Config packages
 \geometry{margin=2.5cm}
 \renewcommand{\familydefault}{\sfdefault} % police sans-serif
+\setulcolor{downloadColor} % je définis le souligné en bleu (pour les liens)
 
 % Tableau
 \setcellgapes{1pt}
@@ -91,6 +93,14 @@
 % Lignes de séparation dans les en-têtes/pieds
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
+
+% Je redéfinis la méthode \href pour que ça s'affiche en bleu
+\let\oldhref\href
+\renewcommand{\href}[2]{%
+    \oldhref{#1}{%
+        \textcolor{downloadColor}{\ul{#2}}%
+    }%
+}
 
 % Commandes
 \input{../_includes/commandes.tex}
